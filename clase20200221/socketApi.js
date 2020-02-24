@@ -1,4 +1,5 @@
-let socket_io = require("socked.io");
+var socket_io = require("socket.io"); 
+var clienteBD = require('./bd/Mongolib');
 var io = socket_io();
 var socketApi = {};
 
@@ -11,15 +12,18 @@ let messages = [{
 }];
 
 io.on('connection', function (socket) {
-    io.sockets.emit('messages', messages);
-
-    socket.on("new-message", data => {
-        socketApi.sendNotification(data);
+    clienteBD.findAll().then( mensajes => {
+        messages = mensajes;
+        io.sockets.emit('messages', messages);
+        socket.on("new-message", data => {
+            socketApi.sendNotification(data);
+        });
     });
 });
 
 socketApi.sendNotification = data => {
     messages.push(data);
+    clienteBD.insertMensaje(data.author, data.content);
     io.sockets.emit('messages', messages);
 }
 

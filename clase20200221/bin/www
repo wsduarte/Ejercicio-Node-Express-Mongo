@@ -7,7 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('clase20200221:server');
 var http = require('http');
-var clienteBD = require('../bd/Mongolib');
 var socketApi = require('../socketApi');
 var io = socketApi.io;
 

@@ -57,5 +57,5 @@ async function insertMensaje(autor, contenido)
   return entidad.insertedId;
 }
 
-module.exports.findAll * findAll;
-module.exports.insertMensaje * insertMensaje;
+module.exports.findAll = findAll;
+module.exports.insertMensaje = insertMensaje;
