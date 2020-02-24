@@ -23,7 +23,10 @@ io.on('connection', function (socket) {
 
 socketApi.sendNotification = data => {
     messages.push(data);
-    clienteBD.insertMensaje(data.author, data.content);
+    clienteBD.insertMensaje(data.author, data.content).catch(err => {
+        console.log('>>>>>>>>>>>>>>>>>>>');
+        console.log(err);
+    });
     io.sockets.emit('messages', messages);
 }
 

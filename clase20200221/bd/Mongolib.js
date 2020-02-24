@@ -14,7 +14,7 @@ const uri = `mongodb+srv://${USUARIO}:${CONTRASENIA}@${CLUSTER}-0ajid.azure.mong
 /**
  * Cliente para conectar a bade de datos
  */
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true  });
 
 /**
  * Método para generar la conexión.
